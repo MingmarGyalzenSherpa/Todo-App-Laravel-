@@ -29,7 +29,7 @@
             <thead>
 
                 <tr>
-                    <th scope="col">ID </th>
+                    <th scope="col">SN</th>
                     <th scope="col">Tasks</th>
 
                     <th scope="col"> Actions </th>
@@ -37,27 +37,18 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Homework</td>
-                    <td>
-                        <button type="button" class="btn btn-danger">Edit</button>
-                        <button type="button" class="btn btn-danger">Danger</button>
-                    </td>
-                </tr>
 
+                <?php $count = 0; ?>
                 @foreach($list as $task)
-                <tr>
-                    <td>{{$task->id}}</td>
-                    <td>{{$task->titile}}</td>
-                    <td>
-                        <form action="" method="get">
-                            <input type="hidden" value="{{$task->id}}">
 
-                            <input type="text" value="{{$task->title}}">
-                            <button type=" button" class="btn btn-danger">Edit</button>
-                            <button type="button" class="btn btn-danger">Danger</button>
-                        </form>
+                <tr>
+                    <td>{{++$count}}</td>
+                    <td>{{$task->title}}</td>
+
+                    <td>
+                        <a href="{{url('/edit-todo/' . $task->id)}}" class="btn btn-outline-danger">Edit</a>
+                    
+                        <a href="{{url('/delete-todo/' . $task->id)}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 @endforeach
@@ -65,6 +56,7 @@
 
         </table>
     </div>
+
 </body>
 
 </html>

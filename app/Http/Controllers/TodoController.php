@@ -23,7 +23,26 @@ class TodoController extends Controller
     }
 
     //delete from database
-    public function deleteTodo(){
+    public function deleteTodo($id){
+       
+        $task = Todo::find($id);
+       
+        $task->delete();
+        return redirect('/');
+    }
+
+    public function editTodo($id){
+        $data = Todo::find($id);
+        return view('edit',['data' => $data]);
+        
+
+    }
+
+    public function updateTodo(Request $req){
+
+        $data = Todo::find($req->id);
+        $data->title = $req->title;
+        $data->save();
         return redirect('/');
     }
 }

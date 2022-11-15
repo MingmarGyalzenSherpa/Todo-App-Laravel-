@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TodoController::class,'index']);
 
-Route::post('/delete-todo',[TodoController::class,'deleteTodo'])->name('deleteTodo');
 
+Route::get('/delete-todo/{id}', [TodoController::class,'deleteTodo']);
+
+Route::get('/edit-todo/{id}', [TodoController::class, 'editTodo']);
 
 Route::post('/save-todo',[TodoController::class,'saveTodo'])->name('saveTodo');
+
+Route::post('/update-todo',[TodoController::class,'updateTodo'])->name('updateTodo');
